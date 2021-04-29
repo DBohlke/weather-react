@@ -87,13 +87,17 @@ export default function Weather() {
             </p>
             <br />
             <small>
-              <a href="https://openweathermap.org/">Get Extended Forecast</a>
+              <a href="https://openweathermap.org/" rel="noreferre">
+                Get Extended Forecast
+              </a>
             </small>
           </div>
         </div>
       </div>
       <div className="tag-line">
-        <a href="https://github.com/DBohlke/weather-react">Open-source code,</a>
+        <a href="https://github.com/DBohlke/weather-react" rel="noreferrer">
+          Open-source code,
+        </a>
         by Dani Bohlke 🐱
       </div>
     </div>
