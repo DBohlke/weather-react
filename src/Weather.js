@@ -93,7 +93,7 @@ export default function Weather() {
         </div>
       </div>
       <div className="tag-line">
-        <a href="https://github.com/DBohlke/weather-app">Open-source code,</a>
+        <a href="https://github.com/DBohlke/weather-react">Open-source code,</a>
         by Dani Bohlke 🐱
       </div>
     </div>
