@@ -95,7 +95,7 @@ export default function Weather() {
       </div>
       <div className="tag-line">
         <a href="https://github.com/DBohlke/weather-react" rel="noreferrer">
-          Open-source code,
+          Open-source code,{" "}
         </a>
         by Dani Bohlke 🐱
       </div>
