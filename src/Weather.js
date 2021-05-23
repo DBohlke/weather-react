@@ -65,9 +65,6 @@ export default function Weather(props) {
                 <span id="max-unit">°F</span> L:
                 <span id="min-temp">{Math.round(weatherData.low)}</span>
                 <span id="min-unit">°F </span>
-                <a href="/" id="unit-convert">
-                  <span id="unit-link">°C</span>
-                </a>
                 <br />
                 <text id="wind">
                   Wind: {Math.round(weatherData.wind)} MPH
