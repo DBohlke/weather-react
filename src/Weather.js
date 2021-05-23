@@ -5,9 +5,8 @@ import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
   function handleResponse(response) {
-    
-
     setWeatherData({
       ready: true,
       icon: "http://openweathermap.org/img/wn/04d@2x.png",
@@ -20,6 +19,21 @@ export default function Weather(props) {
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
     });
+  }
+
+  function search() {
+    const apiKey = "18646baba3751e0ddacc065cb85e47a6";
+    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
   }
 
   if (weatherData.ready) {
@@ -68,13 +82,14 @@ export default function Weather(props) {
           </div>
           <div className="card" id="city-search">
             <div className="card-body">
-              <form id="search-input">
+              <form onSubmit={handleSubmit} id="search-input">
                 <input
                   type="text"
                   placeholder="Enter City"
                   autoComplete="off"
                   autoFocus="on"
                   id="search-text-input"
+                  onChange={handleCityChange}
                 />
                 <input
                   type="submit"
@@ -83,12 +98,6 @@ export default function Weather(props) {
                   id="search-button"
                 />
               </form>
-              <input
-                type="submit"
-                value="Current Location"
-                className="current-location-button"
-                id="current-location-button"
-              />
               <h5 className="card-title" id="city-state">
                 {weatherData.city}
               </h5>
@@ -113,10 +122,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "18646baba3751e0ddacc065cb85e47a6";
-    let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=imperial`;
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return "Loading...";
   }
 }
