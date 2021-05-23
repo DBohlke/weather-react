@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate";
 import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
+    
 
     setWeatherData({
       ready: true,
@@ -16,8 +18,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       realFeel: response.data.main.feels_like,
       city: response.data.name,
-      date: "Sunday, May 23",
-      time: "04:21pm",
+      date: new Date(response.data.dt * 1000),
     });
   }
 
@@ -92,9 +93,7 @@ export default function Weather(props) {
                 {weatherData.city}
               </h5>
               <p className="card-text" id="location-paragraph">
-                <text id="date">{weatherData.date}</text>
-                <br />
-                <text id="time">{weatherData.time}</text>
+                <FormattedDate date={weatherData.date} />
               </p>
               <br />
               <small>
